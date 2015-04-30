@@ -1,0 +1,23 @@
+<div class="container">
+	<form role="form" class="forms" novalidate>
+		<fieldset>
+			<legend>Settings</legend>
+			<label>
+				Hotel picture<br>
+				<img ng-model="settings.image" ng-src="{{settings.image}}" hotel="hotelpic" />
+				<input type="file" class="width-50" accept="image/jpeg,image/gif,image/png"/>
+			<label>
+				Hotel name<br>
+				<input ng-model="settings.name" class="width-50"/>
+			</label>
+			<label>
+				Hotel address<br>
+				<input ng-model="settings.address" class="width-50"/>
+			</label>
+		</fieldset>
+		<p>
+			<button ng-click="settings.update(settings)" type="submit" class="btn btn-green">OK</button>
+			<button ng-click="settings.close()" class="btn btn-red">Close</button>
+		</p>
+	</form>
+</div>

@@ -14,7 +14,7 @@
 			vm.openModal = function(guest) {
 				ngDialog.open({
 					template:'components/frontdesk/modal/modal.html',
-                	controller:'ModalController as modal',
+                	controller:'settingsController as settings',
                 	data: guest
 				});
 			};

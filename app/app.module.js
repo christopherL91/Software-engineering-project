@@ -4,6 +4,7 @@
     angular
         .module('portfolioApp', [
     	'ui.router',
+        'portfolioApp.main',
         'portfolioApp.login',
         'portfolioApp.forgot',
         'portfolioApp.list',
@@ -13,6 +14,7 @@
         'portfolioApp.roomservice',
         'portfolioApp.history',
         'portfolioApp.widgets',
+        'portfolioApp.settings',
         'angular-jwt',
         ])
         .constant('SERVER_INFO',{

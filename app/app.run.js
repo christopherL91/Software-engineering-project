@@ -5,16 +5,18 @@
 		.module('portfolioApp')
 		.run(runBlock);
 
-	runBlock.$inject = ['$rootScope','AuthService','$location'];	
-	function runBlock($rootScope,AuthService,$location) {
+	runBlock.$inject = ['$rootScope','AuthService','$location','$state'];	
+	function runBlock($rootScope,AuthService,$location,$state) {
+		var requestedState = null;
 		$rootScope.$on('$stateChangeStart',function(event, toState, toParams, fromState, fromParams) {
 			if(AuthService.isAuthenticated()) {
 				if(toState.url === '/login' || toState.url === '/forgot') {
 					$location.path('/frontdesk');
 				}
- 			} else {
+ 			}else {
  				if(!(toState.url === '/login' || toState.url === '/forgot')) {
- 					$location.path('/login');
+ 					event.preventDefault();
+ 					$state.go('login');
  				}
  			}
 		});
