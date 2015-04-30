@@ -1,0 +1,24 @@
+<header class="group">
+	<nav class="navbar navbar-left">
+		<ul>
+			<li><a ui-sref="frontdesk.guests">Guest list</a><li>
+			<li><a ui-sref="frontdesk.roomservice">Room service</a><li>
+			<li><a href>Chat</a></li>
+			<li><a ui-sref="frontdesk.history">History</a></li>
+		</ul>
+	</nav>
+	<nav class="navbar navbar-right">
+		<ul>
+			<li><a href ng-click="frontdesk.logout()">Log out</a></li>
+		</ul>
+	</nav>
+</header>
+
+<div ui-view></div>
+
+<footer>
+	<span>
+		EVENTS:
+		{{frontdesk.event}}
+	</span>
+</footer>

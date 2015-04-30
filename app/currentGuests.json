@@ -1,0 +1,47 @@
+[
+	{
+		"id":1,
+		"surname":"karl",
+		"familyname":"svensson",
+		"age":18,
+		"country":"sweden",
+		"language":"swedish",
+		"hotel":"nordic light",
+		"email":"karl@foo.com",
+		"mode":"business",
+		"room":3322,
+		"in": "2015-04-29",
+		"out": "2015-05-10",
+		"image":"http://lorempixel.com/50/50/"
+	},	
+	{
+		"id":2,
+		"surname":"anna",
+		"familyname":"andersson",
+		"age":20,
+		"country":"sweden",
+		"language":"swedish",
+		"hotel":"nordic light",
+		"email":"anna@foo.com",
+		"mode":"vacation",
+		"room":5555,
+		"in": "2015-04-29",
+		"out": "2015-05-14",
+		"image":"http://lorempixel.com/50/50/"
+	},
+	{
+		"id":3,
+		"surname":"anders",
+		"familyname":"andersson",
+		"age":21,
+		"country":"sweden",
+		"language":"swedish",
+		"hotel":"nordic light",
+		"email":"kalle@foo.com",
+		"mode":"vacation",
+		"room":1234,
+		"in": "2015-04-29",
+		"out": "2015-05-10",
+		"image":"http://lorempixel.com/50/50/"
+	}
+]

@@ -1,0 +1,14 @@
+[
+	{
+		"name":"hamburger",
+		"description":"An hamburger with extra cheese",
+		"time":"2015-04-30T14:50+02:00",
+		"room":1234
+	},
+	{
+		"name":"Ice cream",
+		"description":"extra big",
+		"time":"2015-04-30T11:00+02:00",
+		"room":4444
+	}
+]

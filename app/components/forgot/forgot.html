@@ -1,0 +1,23 @@
+<div>
+	<form name="forgotForm" role="form" class="forms center" novalidate>
+		<fieldset>
+			<legend>Forgot password</legend>
+			<label>
+				Username
+				<input ng-model="user.email" class="width-50" type="email" name="mail"
+				ng-class="{error: loginForm.mail.$invalid && loginForm.mail.$dirty}"
+				required />
+			</label>
+		</fieldset>
+		<p>
+			<button ng-click="forgot.reset(user)" type="submit" ng-disabled="forgotForm.$invalid" 
+					class="btn btn-blue">
+						Reset password
+			</button>
+			<button ui-sref="login" class="btn btn-green">
+						Back to login
+			</button>
+		</p>
+		<div ng-bind="forgot.error"></div>
+	</form>
+</div>

@@ -1,0 +1,16 @@
+{
+  "name": "Christopher Lillthors portfolio",
+  "description": "A simple portfolio",
+  "version": "1.0.0",
+  "dependencies": {
+    "angular": "latest",
+    "angular-ui-router": "latest",
+    "kube-css": "git@github.com:imperavi/kube.git#master",
+    "ngstorage": "~0.3.0",
+    "angular-jwt": "~0.0.7",
+    "ngDialog": "~0.3.12",
+    "angular-websocket": "~1.0.9",
+    "angular-moment": "~0.10.0",
+    "moment-timezone": "~0.3.1"
+  }
+}

@@ -1,0 +1,73 @@
+@import url('//meyerweb.com/eric/tools/css/reset/reset.css');
+@import url('../libs/kube-css/css/kube.min.css');
+@import url('../libs/ngDialog/css/ngDialog.min.css');
+@import url('//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css');
+@import url('../libs/ngDialog/css/ngDialog-theme-default.min.css');
+@import url('./guestcard.css');
+@import url('./order.css');
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+	display: none !important;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin: 0;
+    padding: 25px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+table {
+	width:100%;
+	margin-bottom: 30px;
+}
+
+.container {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	position:relative;
+}
+
+#loginform {
+	min-width: 300px;
+}
+
+.center {
+  width: 50%;
+  margin: auto;
+  position: absolute;
+  top: 50%; left: 50%;
+  -webkit-transform: translate(-50%,-50%);
+      -ms-transform: translate(-50%,-50%);
+          transform: translate(-50%,-50%);
+}
+
+.ng-invalid:focus, .error:focus {
+    outline: auto 5px #AA1111 !important;
+}
+.ng-valid:focus {
+	outline: auto 5px #11AA11 !important;
+}
+
+footer {
+	position: fixed;
+	bottom: 0;
+	border-top: 1px solid #ccc;
+	left: 0;
+	right: 0;
+	background-color: white;
+}
+}
+
+.error{
+	color: black !important;
+}

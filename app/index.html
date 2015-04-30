@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Guestdo frontdesk v2.0</title>
+        <meta charset="utf-8">
+        <base href="/">
+        <meta name="viewport" content="initial-scale = 1.0,maximum-scale=1.0,user-scalable=no" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <meta name="description" content="Frontdesk v2.0" />
+        <link rel="stylesheet" type="text/css" href="assets/css/main.css">
+    </head>
+    <body ng-app="portfolioApp"
+          ng-controller="AppController as app">
+
+        <!-- injecting view -->
+        <div class="container" ui-view></div>
+
+        <!-- scripts -->
+        <script src="assets/libs/angular/angular.min.js"></script>
+        <script src="assets/libs/angular-ui-router/release/angular-ui-router.min.js"></script>
+        <script src="assets/libs/ngstorage/ngStorage.min.js"></script>
+        <script src="assets/libs/angular-jwt/dist/angular-jwt.min.js"></script>
+        <script src="assets/libs/ngDialog/js/ngDialog.min.js"></script>
+        <script src="assets/libs/angular-websocket/angular-websocket.js"></script>
+        <script src="assets/libs/moment/moment.js"></script>
+        <script src="assets/libs/angular-moment/angular-moment.js"></script>
+        <script src="assets/libs/moment-timezone/builds/moment-timezone-with-data-2010-2020.js"></script>
+        
+        <!-- angular scripts -->
+        <script src="app.module.js"></script>
+        <script src="app.run.js"></script>
+        <script src="app.routes.js"></script>
+        <!-- components -->
+        <script src="components/login/login.js"></script>
+        <script src="components/forgot/forgot.js"></script>
+        <script src="components/frontdesk/list/list.js"></script>
+        <script src="components/frontdesk/modal/modal.js"></script>
+        <script src="components/frontdesk/roomservice/roomservice.js"></script>
+        <script src="components/frontdesk/history/history.js"></script>
+
+        <!-- factories/services/directives -->
+        <script src="shared/Factories/loginService.js"></script>
+        <script src="shared/Factories/streamService.js"></script>
+        <script src="components/frontdesk/list/listService.js"></script>
+        <script src="components/frontdesk/roomservice/roomOrderService.js"></script>
+        <script src="shared/Directives/orders/order.directive.js"></script>
+
+        <!-- helper files -->
+        <script src="assets/js/utils.js"></script>
+    </body>
+</html>

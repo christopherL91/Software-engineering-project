@@ -1,0 +1,73 @@
+<table class="table-container">
+	<thead>
+		<caption>({{list.guests.currentGuests.length}}) Current guests</caption>
+		<tr>
+			<th></th>
+			<th>
+				Surname
+			</th>
+			<th>
+				Family name
+			</th>
+			<th>
+				Mode
+			</th>
+			<th>	
+				Room
+			</th>
+			<th>
+				Visiting
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="guest in list.guests.currentGuests"
+			ng-click="list.openModal(guest)">
+			<td><img ng-src="{{guest.image}}"/></td>
+			<td>{{guest.surname}}</td>
+			<td>{{guest.familyname}}</td>
+			<td>{{guest.mode}}</td>
+			<td>{{guest.room}}</td>
+			<td>
+				{{guest.in}}|{{guest.out|amDifference:guest.in:'days'}} nights|{{guest.out}}
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<table class="table-container">
+	<thead>
+		<caption>({{list.guests.arrivingGuests.length}}) Arriving guests</caption>
+		<tr>
+			<th></th>
+			<th>
+				Surname
+			</th>
+			<th>
+				Family name
+			</th>
+			<th>
+				Mode
+			</th>
+			<th>	
+				Room
+			</th>
+			<th>
+				Visiting
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="guest in list.guests.arrivingGuests"
+			ng-click="list.openModal(guest)">
+			<td><img ng-src="{{guest.image}}"/></td>
+			<td>{{guest.surname}}</td>
+			<td>{{guest.familyname}}</td>
+			<td>{{guest.mode}}</td>
+			<td>{{guest.room}}</td>
+			<td>
+				{{guest.in}}|{{guest.out|amDifference:guest.in:'days'}} nights|{{guest.out}}
+			</td>
+		</tr>
+	</tbody>
+</table>

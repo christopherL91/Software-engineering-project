@@ -1,0 +1,156 @@
+.guestCardBG {
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.5);
+  height: 100%;
+  width: 100%;
+  z-index: 2000;
+}
+
+.guestCard {
+  width: 30%;
+  height: auto;
+  background-color: rgba(255, 255, 255, 1);
+  border-radius: 3%;
+  position: fixed;
+  left: 35%;
+  top: 10%;
+}
+
+.guestCard * {
+  position: relative;
+  //do NOT remove this.
+  vertical-align: middle;
+}
+
+.guestCardTable{
+  margin-top: 3.5%; 
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  width: 95%;
+}
+
+#bordered {
+  border-style: solid;
+  border-color: gray;
+  border-bottom-width: 1px;
+}
+
+.profilePic {
+  left: 5%;
+  float: left;
+  height: 200px;
+  width: 200px;
+  background-color: rgb(200, 200, 200);
+}
+
+.guestName {
+  padding-left: 10%;
+  font-size: 32px;
+  display: inline-block;
+}
+
+.guestInfo {
+  margin-top: 2.5%;
+  margin-bottom: 2.5%;
+  left: 5%;
+  font-size: 20px;
+}
+
+.guestStayContainer {
+  margin-left: auto;
+  margin-right: auto;
+  width: 95%;
+}
+
+.guestStayTable{
+  border-spacing: 25px;
+  border-collapse: separate;
+}
+
+
+.date1 {
+  text-align: right;
+  font-size: 80px;
+}
+
+.date2 {
+  width: 100%;
+  text-align: center;
+  border-right-style: solid;
+  border-left-style: solid;
+  border-color: gray;
+  border-width: 1px; 
+}
+
+#date2_1 {
+  text-align: center;
+  font-size: 50px;
+}
+
+#date2_2 {
+  text-align: center;
+  font-size: 20px;
+}
+
+.date3 td {
+  text-align: right;
+  font-size: 40px;
+}
+
+.emailInfo {
+  left: 7%;
+}
+
+#emailIcon {
+  margin-top: 10%;
+  margin-bottom: 10%;
+  width: 60px;
+  height: 50px;
+  background-color: rgb(200, 200, 200);
+}
+
+#email {
+  left: 3%;
+  width: 100%;
+  font-size: 32px;
+}
+
+.phoneInfo {
+  left: 7%;
+}
+
+#phoneIcon {
+  margin-top: 10%;
+  margin-bottom: 10%;
+  width: 60px;
+  height: 50px;
+  background-color: rgb(200, 200, 200);
+}
+
+#phonenum {
+  left: 3%;
+  width: 100%;
+  font-size: 32px;
+}
+.msgBtn {
+  padding-top: 1%;
+  padding-bottom: 1%;
+}
+
+#msgBtn {
+  -webkit-border-radius: 4;
+  -moz-border-radius: 4;
+  border-radius: 4px;
+  color: #FFFFFF;
+  font-size: 32px;
+  background: green;
+  padding: 6px 60px 6px 60px;
+  border: solid gray 2px;
+  text-decoration: none;
+}
+
+.btn:hover {
+  background: #3cb0fd;
+  text-decoration: none;
+}
