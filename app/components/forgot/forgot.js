@@ -2,12 +2,12 @@
 	'use strict';
 
 	angular
-		.module('portfolioApp.forgot',['ngDialog'])
+		.module('portfolioApp.forgot',['ngDialog','toastr'])
 		.controller('ForgotController',ForgotController);
 
-		ForgotController.$inject = ['AuthService','ngDialog','$state'];
+		ForgotController.$inject = ['AuthService','ngDialog','$state','toastr'];
 
-		function ForgotController(AuthService,ngDialog,$state) {
+		function ForgotController(AuthService,ngDialog,$state,toastr) {
 			var vm = this;
 
 			vm.reset = function(user) {
@@ -19,14 +19,22 @@
                         	data:user
                         });
                     })
-                    .catch(function(error) {
-                        vm.error = 'Could not find any account with this email';
+                    .catch(function(err) {
+						console.log(err);
+						toastr.warning('Email not found', 'Could not find any user with this email', {
+							extendedTimeOut: 0,
+							maxOpened: 5,
+							tapToDismiss: true,
+							timeOut: 0,
+							// Kolla detta...
+							positionClass: 'toast-bottom-right'
+						});
                     });
-            }
+            };
 
             vm.confirm = function() {
             	vm.closeThisDialog();
             	$state.go('login');
-            }
+            };
 		}
 })();

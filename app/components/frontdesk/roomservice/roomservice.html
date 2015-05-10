@@ -1,7 +1,7 @@
 <div>
 	<h1> Room service </h1>
 	<ul>
-		<li ng-repeat="order in roomservice.orders | orderBy:'time'">
+		<li ng-repeat="order in roomservice.orders | orderBy:'time'" class="roomservice">
 			<guest-Order order="order"></guest-Order>
 		</li>
 	</ul>

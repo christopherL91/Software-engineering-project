@@ -1,5 +1,5 @@
 <div>
-	<h3>Message to {{ngDialogData.name}}</h3><br>
+	<h3>Message to: {{ngDialogData.surname}} {{ngDialogData.familyname}}</h3><br>
 	<form name="msg" novalidate>
 		<textarea name="msg" ng-model="modal.message" cols="40" rows="10" required></textarea>
 		<button ng-click="modal.sendMessage()" ng-disabled="msg.$invalid" type="submit" class="btn btn-green">Send message</button>

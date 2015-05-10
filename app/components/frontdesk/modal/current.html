@@ -1,7 +1,7 @@
 <section>
 	profile picture: <img ng-src="{{ngDialogData.image}}"/><br>
 	<span><i class="fa fa-user"></i> {{ngDialogData.name}} {{ngDialogData.age}} years old</span><br>
-	<span><i class="fa fa-envelope-o"></i> {{ngDialogData.email}}</span><br>
+	<span><i class="fa fa-envelope-o"></i> <a href="mailto:{{ngDialogData.email}}">{{ngDialogData.email}}</a></span><br>
 	<button ng-click="modal.checkout()" class="btn btn-red">Check out</button>
 	<button ng-click="modal.messageDialog()" class="btn btn-green">Message</button>
 </section>

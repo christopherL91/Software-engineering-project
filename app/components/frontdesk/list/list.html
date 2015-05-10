@@ -1,8 +1,8 @@
-<table class="table-hovered">
+<table class="table-container">
 	<thead>
 		<caption>({{list.guests.currentGuests.length}}) Current guests</caption>
 		<tr>
-			<th></th>
+			<th>Profile Picture</th>
 			<th>
 				Surname
 			</th>
@@ -21,8 +21,8 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr ng-repeat="guest in list.guests.currentGuests"
-			ng-click="list.openModal(guest)">
+		<tr ng-repeat="guest in list.guests.currentGuests | orderBy:'in'"
+			ng-click="list.openCurrentModal(guest)">
 			<td><img ng-src="{{guest.image}}"/></td>
 			<td>{{guest.surname}}</td>
 			<td>{{guest.familyname}}</td>
@@ -35,11 +35,11 @@
 	</tbody>
 </table>
 
-<table class="table-hovered">
-	<thead>
-		<caption>({{list.guests.arrivingGuests.length}}) Arriving guests</caption>
+<table class="table-container">
+    <thead>
+        <caption>({{list.guests.arrivingGuests.length}}) Arriving guests</caption>
 		<tr>
-			<th></th>
+			<th>Profile Picture</th>
 			<th>
 				Surname
 			</th>
@@ -55,11 +55,11 @@
 			<th>
 				Visiting
 			</th>
-		</tr>
-	</thead>
+        </tr>
+    </thead>
 	<tbody>
-		<tr ng-repeat="guest in list.guests.arrivingGuests"
-			ng-click="list.openModal(guest)">
+		<tr ng-repeat="guest in list.guests.arrivingGuests | orderBy:'in'"
+			ng-click="list.openFutureModal(guest)">
 			<td><img ng-src="{{guest.image}}"/></td>
 			<td>{{guest.surname}}</td>
 			<td>{{guest.familyname}}</td>

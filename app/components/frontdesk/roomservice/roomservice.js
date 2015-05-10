@@ -2,7 +2,7 @@
 	'use strict';
 
 	angular
-		.module('portfolioApp.roomservice',[])
+		.module('portfolioApp.roomservice',['toastr'])
 		.controller('roomserviceController',roomserviceController);
 
 		roomserviceController.$inject = ['roomOrderService'];

@@ -5,23 +5,44 @@
 		.module('portfolioApp.roomservice')
 		.factory('roomOrderService',roomOrderService);
 
-		roomOrderService.$inject = ['$http'];
+		roomOrderService.$inject = ['$http','SERVER_INFO','toastr'];
 
-		function roomOrderService($http) {
-			var orders = [];
+		function roomOrderService($http,SERVER_INFO,toastr) {
+			var orderslist = [];
 
-			$http.get('orders.json')
+			$http({
+                    method: 'GET',
+                    url : 'http://localhost:3000/api/roomservice',
+                    data: '',
+                    headers: {
+                        'Content-Type': 'application/json; charset=utf-8'
+                    }
+                })
 				.then(function(response) {
-					response.data.forEach(function(order) {
-						orders.push(order);
-					});
+                    var orders = response.data.orders;
+                    if (angular.isArray(orders)){
+                        orders.forEach(function (order){
+                            orderslist.push(order);
+                        });
+                    } else {
+                        // only one element
+                        orderslist.push(orders);
+                    }
 				})
 				.catch(function(err) {
-					alert(err.data);
+					console.log(err);
+                    toastr.warning('Roomservice orders not found', 'Could not find roomservice orders due to an error', {
+                        extendedTimeOut: 0,
+                        maxOpened: 5,
+                        tapToDismiss: true,
+                        timeOut: 0,
+                        // Kolla detta...
+                        positionClass: 'toast-bottom-right'
+                    });
 				});
 
 				var service = {
-					orders:orders
+					orders:orderslist
 				};
 
 				return service;

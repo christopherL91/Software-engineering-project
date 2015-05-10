@@ -5,20 +5,20 @@
 		.module('portfolioApp')
 		.run(runBlock);
 
-	runBlock.$inject = ['$rootScope','AuthService','$location','$state'];	
-	function runBlock($rootScope,AuthService,$location,$state) {
-		var requestedState = null;
+	runBlock.$inject = ['$rootScope','jwtHelper','$location','$state','$localStorage'];
+	function runBlock($rootScope,jwtHelper,$location,$state,$localStorage) {
 		$rootScope.$on('$stateChangeStart',function(event, toState, toParams, fromState, fromParams) {
-			if(AuthService.isAuthenticated()) {
-				if(toState.url === '/login' || toState.url === '/forgot') {
-					$location.path('/frontdesk');
-				}
- 			}else {
- 				if(!(toState.url === '/login' || toState.url === '/forgot')) {
- 					event.preventDefault();
- 					$state.go('login');
- 				}
- 			}
+            var token = $localStorage.token;
+            if(token && !(window.isEmpty(token) && jwtHelper.isTokenExpired(token))) {
+                if(toState.url === '/login' || toState.url === '/forgot') {
+                    $location.path('/frontdesk');
+                }
+            }else {
+                if(!(toState.url === '/login' || toState.url === '/forgot')) {
+                    event.preventDefault();
+                    $state.go('login');
+                }
+            }
 		});
 	}
 })();

@@ -8,17 +8,31 @@
         	$stateProvider
         	 	.state('login',{
         	 		url:'/login',
+                    data: {
+                        require_login:false
+                    },
         	 		templateUrl:'/components/login/login.html',
         	 		controller:'LoginController as login'
         	 	})
                 .state('forgot',{
                     url:'/forgot',
+                    data: {
+                        require_login:false
+                    },
                     templateUrl:'/components/forgot/forgot.html',
                     controller:'ForgotController as forgot'
                 })
                 .state('frontdesk',{
                     url:'/frontdesk',
                     abstract: true,
+                    data: {
+                        require_login:true
+                    },
+                    resolve: {
+                        token: function(AuthService) {
+                            return AuthService.tokenPromise();
+                        }
+                    },
                     templateUrl:'/components/frontdesk/main/main.html',
                     controller:'mainController as frontdesk'
                 })

@@ -5,16 +5,16 @@
 		.module('portfolioApp.AuthService',['ngStorage'])
 		.factory('AuthService', AuthService);
 
-		AuthService.$inject = ['$http','$localStorage','$q','jwtHelper','streamService','SERVER_INFO'];
+		AuthService.$inject = ['$http','$interval','$localStorage','$q','jwtHelper','streamService','SERVER_INFO'];
 
-		function AuthService($http,$localStorage,$q,jwtHelper,streamService,SERVER_INFO) {
+		function AuthService($http,$interval,$localStorage,$q,jwtHelper,streamService,SERVER_INFO) {
 			return {
 				login: function(user) {
 					var deferred = $q.defer();
-					$http.get(SERVER_INFO.address)
+					$http.post(SERVER_INFO.address + '/api/login',user)
 						.then(function(response) {
-							$localStorage.token = response.data.token;
-							streamService.open();
+							var token = response.data.token;
+							$localStorage.token = token;
 							deferred.resolve(response);
 						})
 						.catch(function(error) {
@@ -25,17 +25,29 @@
 				logout: function() {
 					return $q(function(resolve) {
 						delete $localStorage.token;
-						streamService.close();
 						resolve();
 					});
 				},
+				info: function() {
+                    return this.tokenPromise()
+                        .then(function() {
+                            return $http({
+                                method: 'GET',
+                                url : SERVER_INFO.address + '/api/info',
+                                data: '',
+                                headers: {
+                                    'Content-Type': 'application/json; charset=utf-8'
+                                }
+                            });
+                        });
+                },
 				forgot: function(user) {
 					var deferred = $q.defer();
 					$http({
-							url:SERVER_INFO.address + '/api/auth/forgot_password',
+							url: SERVER_INFO.address + '/api/auth/forgot_password',
 							params: {
-								email:user.email,
-								platform:'web'
+								email: user.email,
+								platform: 'web'
 							}
 						})
 						.then(function(response) {
@@ -46,15 +58,18 @@
 						});
 					return deferred.promise;
 				},
-				isAuthenticated: function() {
-					var authenticated = false;
-					var token = $localStorage.token;
-					if(token) {
-						authenticated = !(window.isEmpty(token) && jwtHelper.isTokenExpired(token));
-						streamService.open();
-					}
-					return authenticated;
-				}
+                tokenPromise: function() {
+                    return $q(function(resolve) {
+                        // check for a valid token until you get one
+                        var tokenCheck = $interval(function() {
+                           var token = $localStorage.token;
+                            if(!(window.isEmpty(token) && jwtHelper.isTokenExpired(token))) {
+                                $interval.cancel(tokenCheck);
+                                resolve(jwtHelper.decodeToken(token));
+                            }
+                        },100);
+                    });
+                }
 			};
 		}
 })();

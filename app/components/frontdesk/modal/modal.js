@@ -12,11 +12,13 @@
 
 			vm.checkout = function() {
 				var guest = $scope.ngDialogData;
-				streamService.send({
-					type:'remove_guest',
-					name: guest.name,
-					id:guest.id
-				});
+                listService.removeGuests.removeCurrentGuest(guest);
+				$scope.closeThisDialog();
+			};
+
+			vm.checkin = function() {
+				var guest = $scope.ngDialogData;
+                listService.removeGuests.removeFutureGuest(guest);
 				$scope.closeThisDialog();
 			};
 
@@ -29,11 +31,8 @@
 					});
 			};
 
+			// TODO
 			vm.sendMessage = function() {
-				streamService.send({
-					type: 'message',
-					body: vm.message
-				});
 				$scope.closeThisDialog();
 			};
 		}

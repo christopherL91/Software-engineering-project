@@ -1,0 +1,7 @@
+<section>
+    profile picture: <img ng-src="{{ngDialogData.image}}"/><br>
+    <span><i class="fa fa-user"></i> {{ngDialogData.name}} {{ngDialogData.age}} years old</span><br>
+    <span><i class="fa fa-envelope-o"></i> <a href="mailto:{{ngDialogData.email}}">{{ngDialogData.email}}</a></span><br>
+    <button ng-click="modal.checkin()" class="btn btn-red">Check in</button>
+    <button ng-click="modal.messageDialog()" class="btn btn-green">Message</button>
+</section>

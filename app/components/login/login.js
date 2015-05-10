@@ -2,12 +2,12 @@
     'use strict';
 
     angular
-        .module('portfolioApp.login',['angular-jwt'])
+        .module('portfolioApp.login',['angular-jwt','toastr'])
         .controller('LoginController', LoginController);
 
-        LoginController.$inject = ['AuthService','$state'];
+        LoginController.$inject = ['AuthService','$state','toastr'];
 
-        function LoginController(AuthService,$state) {
+        function LoginController(AuthService,$state,toastr) {
             var vm = this;
 
             vm.login = function(user) {
@@ -15,9 +15,13 @@
                     .then(function(data) {
                         $state.go('frontdesk.guests');
                     })
-                    .catch(function(error) {
-                        alert(error);
+                    .catch(function(err) {
+                        console.log(err);
+                        toastr.error(err.data.status, 'Invalid credentials', {
+                            maxOpened: 1,
+                            timeOut: 5000
+                        });
                     });
             };
-        };
+        }
 })();
