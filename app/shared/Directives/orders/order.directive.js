@@ -23,30 +23,14 @@
 	    	}
 		}
 
-		orderController.$inject = ['$interval','$scope'];
+		orderController.$inject = ['$interval','$scope','roomOrderService'];
 
-		function orderController($interval,$scope) {
+		function orderController($interval,$scope,roomOrderService) {
 			var vm = this;
 
-			// var checkTime = $interval(function() {
-			// 	var now = new Date();
-			// 	var orderTime = new Date(vm.order.time);
-			// 	if(orderTime < now) {
-			// 		orderTime.setDate(orderTime.getDate() + 1);
-			// 	}
-			// 	var diff = orderTime - now;
-			// 	var minutes = Math.floor(diff/1000/60);
-			// 	console.log(minutes);
-			// 	if(minutes <= 5) {
-			// 		console.log('ASAP');
-			// 		vm.order.time = 'ASAP';
-			// 		$interval.cancel(checkTime);
-			// 	}
-			// },1000);
-
 			vm.confirm = function() {
-				console.log(vm.order);
-			}
+                roomOrderService.done(vm.order);
+			};
 
 			$scope.$on('$destroy', function() {
         		// $interval.cancel(checkTime);

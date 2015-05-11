@@ -42,10 +42,22 @@
 				});
 
 				var service = {
-					orders:orderslist
+					orders:orderslist,
+                    done: done
 				};
 
 				return service;
 				/////////////////////////////
+
+                function done(order) {
+                    var id = order._id;
+                    for(var i = 0; i < orderslist.length; i++) {
+                        if(orderslist[i]._id === id) {
+                            console.log(orderslist[i]);
+                            orderslist.splice(i,1);
+                        }
+                    }
+                    alert('Will now send a message to server...');
+                }
 		}
 })();

@@ -7,7 +7,7 @@
 			<i class="fa fa-file-text-o"> {{orderCtrl.order.description}}</i><br>
 			<i class="fa fa-birthday-cake"> {{orderCtrl.order.dessert}}</i><br>
             <i class="fa fa-money"> {{orderCtrl.order.price | currency}}</i><br><br>
-			<button class="btn btn-green btn-small">Done</button>
+			<button ng-click="orderCtrl.confirm()" class="btn btn-green btn-small">Done</button>
 		</p>
 	</div>
 </section>

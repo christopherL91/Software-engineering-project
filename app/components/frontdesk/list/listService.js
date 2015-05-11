@@ -75,16 +75,16 @@
 				////////////////////// define functions here.
 
 				function removeCurrentGuest(guest) {
-                    $http({
-                        method: 'DELETE',
-                        url : SERVER_INFO.address + '/api/current',
-                        data: {
-                            guest_id: guest._id
-                        },
-                        headers: {
-                            'Content-Type': 'application/json; charset=utf-8'
-                        }
-                    })
+                        $http({
+                            method: 'DELETE',
+                            url : SERVER_INFO.address + '/api/current',
+                            data: {
+                                guest_id: guest._id
+                            },
+                            headers: {
+                                'Content-Type': 'application/json; charset=utf-8'
+                            }
+                        })
                         .then(function(response) {
                             console.log(response);
                             var id = guest._id;
@@ -101,16 +101,16 @@
 
 				function removeFutureGuest(guest) {
                     console.log(guest);
-                    $http({
-                        method: 'DELETE',
-                        url : SERVER_INFO.address + '/api/future',
-                        data: {
-                            guest_id : guest._id
-                        },
-                        headers: {
-                            'Content-Type': 'application/json; charset=utf-8'
-                        }
-                    })
+                        $http({
+                            method: 'DELETE',
+                            url : SERVER_INFO.address + '/api/future',
+                            data: {
+                                guest_id : guest._id
+                            },
+                            headers: {
+                                'Content-Type': 'application/json; charset=utf-8'
+                            }
+                        })
                         .then(function(response) {
                             console.log(response);
                             var id = guest._id;
@@ -129,8 +129,9 @@
                             })
                         })
                         .then(function(response) {
-                            console.log(response);
-                            currentGuests.push(guest);
+                                console.log(response);
+                                console.log(guest);
+                                currentGuests.push(guest);
                         })
                         .catch(function(err) {
                             console.log(err);

@@ -20,6 +20,7 @@
 			};
 
             vm.openFutureModal = function(guest) {
+                console.log(guest);
                 ngDialog.open({
                     template:'components/frontdesk/modal/future.html',
                     controller:'ModalController as modal',

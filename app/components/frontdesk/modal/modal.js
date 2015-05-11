@@ -32,7 +32,8 @@
 			};
 
 			// TODO
-			vm.sendMessage = function() {
+			vm.sendMessage = function(message) {
+                alert('Will send the following message: ' + vm.message);
 				$scope.closeThisDialog();
 			};
 		}
