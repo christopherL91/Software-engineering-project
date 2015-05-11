@@ -18,7 +18,7 @@
         'angular-jwt'
         ])
         .constant('SERVER_INFO',{
-            address: 'http://localhost:3000',
+            address: 'http://lillthors.ninja:5000',
             websocket: 'ws://localhost:8080/ws'
             // websocket:'ws://echo.websocket.org/'
         })

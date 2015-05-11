@@ -5,8 +5,8 @@
         .module('portfolioApp.settings')
         .factory('settingsService',settingsService);
 
-        settingsService.$inject = ['$http','$rootScope','$q'];
-        function settingsService($http,$rootScope,$q) {
+        settingsService.$inject = ['$http','$rootScope','$q','SERVER_INFO'];
+        function settingsService($http,$rootScope,$q,SERVER_INFO) {
 
             var service = {
                 update: update
@@ -20,7 +20,7 @@
                 var deferred = $q.defer();
                 $http({
                         method: 'POST',
-                        url : 'http://localhost:3000/api/info',
+                        url : SERVER_INFO.address + '/api/info',
                         data: {
                             settings: settings
                         },

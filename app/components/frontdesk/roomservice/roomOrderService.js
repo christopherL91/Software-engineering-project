@@ -12,7 +12,7 @@
 
 			$http({
                     method: 'GET',
-                    url : 'http://localhost:3000/api/roomservice',
+                    url : SERVER_INFO.address + '/api/roomservice',
                     data: '',
                     headers: {
                         'Content-Type': 'application/json; charset=utf-8'
@@ -57,7 +57,7 @@
                             orderslist.splice(i,1);
                         }
                     }
-                    alert('Will now send a message to server...');
+                    alert('Will now  send a message to server...');
                 }
 		}
 })();
