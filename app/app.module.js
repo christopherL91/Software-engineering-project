@@ -3,19 +3,20 @@
 
     angular
         .module('portfolioApp', [
-    	'ui.router',
-        'portfolioApp.main',
-        'portfolioApp.login',
-        'portfolioApp.forgot',
-        'portfolioApp.list',
-        'portfolioApp.AuthService',
-        'portfolioApp.streamService',
-        'portfolioApp.modal',
-        'portfolioApp.roomservice',
-        'portfolioApp.history',
-        'portfolioApp.widgets',
-        'portfolioApp.settings',
-        'angular-jwt'
+            'ui.router',
+            'portfolioApp.main',
+            'portfolioApp.login',
+            'portfolioApp.forgot',
+            'portfolioApp.list',
+            'portfolioApp.AuthService',
+            'portfolioApp.streamService',
+            'portfolioApp.modal',
+            'portfolioApp.roomservice',
+            'portfolioApp.history',
+            'portfolioApp.widgets',
+            'portfolioApp.settings',
+            'angular-jwt',
+            'angular.filter'
         ])
         .constant('SERVER_INFO',{
             address: 'http://lillthors.ninja:5000',

@@ -1,3 +1,4 @@
+<input ng-model="search" placeholder="Search guest by full name" class="width-30" />
 <table class="table-container">
 	<thead>
 		<caption>({{list.guests.currentGuests.length}}) Current guests</caption>
@@ -21,7 +22,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr ng-repeat="guest in list.guests.currentGuests | orderBy:'in'"
+		<tr ng-repeat="guest in list.guests.currentGuests | searchField: 'surname': 'familyname' | filter: search | orderBy:'in'"
 			ng-click="list.openCurrentModal(guest)">
 			<td><img ng-src="{{guest.image}}"/></td>
 			<td>{{guest.surname}}</td>
@@ -58,7 +59,7 @@
         </tr>
     </thead>
 	<tbody>
-		<tr ng-repeat="guest in list.guests.arrivingGuests | orderBy:'in'"
+		<tr ng-repeat="guest in list.guests.arrivingGuests | searchField: 'surname': 'familyname' | filter: search | orderBy:'in'"
 			ng-click="list.openFutureModal(guest)">
 			<td><img ng-src="{{guest.image}}"/></td>
 			<td>{{guest.surname}}</td>
