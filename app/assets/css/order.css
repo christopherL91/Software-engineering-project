@@ -35,3 +35,7 @@ guest-order .order-image {
     display: inline-block !important;
     margin: 10px;
 }
+
+.order-buttons {
+    text-align: center;
+}
