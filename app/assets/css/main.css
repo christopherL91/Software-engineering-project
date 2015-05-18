@@ -72,3 +72,7 @@ footer {
 .error{
 	color: black !important;
 }
+
+.bugreport {
+    text-align: right !important;
+}

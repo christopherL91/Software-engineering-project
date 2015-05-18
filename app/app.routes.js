@@ -26,7 +26,7 @@
                     url:'/frontdesk',
                     abstract: true,
                     data: {
-                        require_login:true
+                        require_login: true
                     },
                     resolve: {
                         token: function(AuthService) {
@@ -45,11 +45,6 @@
                     url:'/roomservice',
                     templateUrl:'/components/frontdesk/roomservice/roomservice.html',
                     controller:'roomserviceController as roomservice'
-                })
-                .state('frontdesk.history',{
-                    url:'/history',
-                    templateUrl:'/components/frontdesk/history/history.html',
-                    controller:'historyController as history'
                 });
         });
 })();

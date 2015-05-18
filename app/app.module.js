@@ -14,18 +14,21 @@
             'portfolioApp.roomservice',
             'portfolioApp.history',
             'portfolioApp.widgets',
+            'portfolioApp.bugreport',
             'portfolioApp.settings',
             'angular-jwt',
             'angular.filter'
         ])
         .constant('SERVER_INFO',{
-            address: 'http://lillthors.ninja:5000',
-            websocket: 'ws://localhost:8080/ws'
-            // websocket:'ws://echo.websocket.org/'
+            //address: 'http://lillthors.ninja:5000',
+            address: 'http://localhost:5000',
+            //websocket: 'http://lillthors.ninja:5000'
+            websocket: 'http://localhost:5000'
         })
         .constant('EVENTS',{
             new_guest: 'NEW_GUEST',
-            remove_guest: 'REMOVE_GUEST'
+            remove_guest: 'REMOVE_GUEST',
+            remove_order: 'REMOVE_ORDER'
         })
         .config(AppConfig)
         .controller('AppController', AppController);
@@ -36,10 +39,10 @@
         }
 
         function AppConfig($httpProvider,jwtInterceptorProvider,toastrConfig) {
-            jwtInterceptorProvider.tokenGetter = function() {
-                var token = window.localStorage.getItem('ngStorage-token');
-                return JSON.parse(token);
-            };
+            jwtInterceptorProvider.tokenGetter = ['$localStorage',function($localStorage) {
+                return $localStorage.token;
+            }];
+
             $httpProvider.interceptors.push('jwtInterceptor');
 
             angular.extend(toastrConfig, {

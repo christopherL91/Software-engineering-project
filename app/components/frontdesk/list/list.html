@@ -30,7 +30,7 @@
 			<td>{{guest.mode}}</td>
 			<td>{{guest.room}}</td>
 			<td>
-				{{guest.in | date: 'fullDate'}} | {{guest.out|amDifference:guest.in:'days'}} nights | {{guest.out | date: 'fullDate'}}
+				{{guest.in | date: 'fullDate'}} | nights: {{guest.out|amDifference:guest.in:'days'}} | {{guest.out | date: 'fullDate'}}
 			</td>
 		</tr>
 	</tbody>
@@ -67,7 +67,7 @@
 			<td>{{guest.mode}}</td>
 			<td>{{guest.room}}</td>
 			<td>
-				{{guest.in | date: 'fullDate'}} | {{guest.out|amDifference:guest.in:'days'}} nights | {{guest.out | date: 'fullDate'}}
+				{{guest.in | date: 'fullDate'}} | nights: {{guest.out|amDifference:guest.in:'days'}} | {{guest.out | date: 'fullDate'}}
 			</td>
 		</tr>
 	</tbody>

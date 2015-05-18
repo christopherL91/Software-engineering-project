@@ -2,7 +2,7 @@
 	<h1> Room service </h1>
     <input ng-model="search" placeholder="Search by description" />
 	<ul>
-		<li ng-repeat="order in roomservice.orders | filter: search | orderBy:'time'" class="roomservice">
+		<li ng-repeat="order in roomservice.orders | searchField: 'description'| filter: search | orderBy:'time'" class="roomservice">
 			<guest-Order order="order"></guest-Order>
 		</li>
 	</ul>

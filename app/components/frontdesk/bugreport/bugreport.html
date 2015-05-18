@@ -1,0 +1,7 @@
+<div>
+    <h3>Report a bug to guestdo</h3><br>
+    <form name="msg" novalidate>
+        <textarea name="msg" ng-model="bug.message" cols="40" rows="10" required></textarea>
+        <button ng-click="bug.sendReport()" ng-disabled="msg.$invalid" type="submit" class="btn btn-green">Send report</button>
+    </form>
+</div>
