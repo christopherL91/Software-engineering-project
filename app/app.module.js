@@ -15,6 +15,7 @@
             'portfolioApp.history',
             'portfolioApp.widgets',
             'portfolioApp.bugreport',
+            'angularSpinner',
             'portfolioApp.settings',
             'angular-jwt',
             'angular.filter'

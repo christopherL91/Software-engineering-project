@@ -27,7 +27,7 @@
                             return roomOrderService.getOrders();
                         },
                         guestListPrepService: function(listService) {
-                            return listService.getGuests()
+                            return listService.getGuests();
                         },
                         settingsPrepService: function(settingsService) {
                             return settingsService.getSettings();
