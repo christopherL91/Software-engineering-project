@@ -27,19 +27,6 @@
 					resolve();
 				});
 			},
-			info: function() {
-				return this.tokenPromise()
-					.then(function() {
-						return $http({
-							method: 'GET',
-							url : SERVER_INFO.address + '/api/info',
-							data: '',
-							headers: {
-								'Content-Type': 'application/json; charset=utf-8'
-							}
-						});
-					});
-			},
 			forgot: function(user) {
 				var deferred = $q.defer();
 				$http({
@@ -57,18 +44,18 @@
 					});
 				return deferred.promise;
 			},
-			tokenPromise: function() {
-				return $q(function(resolve) {
-					// check for a valid token until you get one
-					var tokenCheck = $interval(function() {
-						var token = $localStorage.token;
-						if(!(window.isEmpty(token) && jwtHelper.isTokenExpired(token))) {
-							$interval.cancel(tokenCheck);
-							resolve(jwtHelper.decodeToken(token));
-						}
-					},100);
-				});
-			},
+			//tokenPromise: function() {
+			//	return $q(function(resolve) {
+			//		// check for a valid token until you get one
+			//		var tokenCheck = $interval(function() {
+			//			var token = $localStorage.token;
+			//			if(!(window.isEmpty(token) && jwtHelper.isTokenExpired(token))) {
+			//				$interval.cancel(tokenCheck);
+			//				resolve(jwtHelper.decodeToken(token));
+			//			}
+			//		},100);
+			//	});
+			//},
             token: function() {
                 var token = $localStorage.token;
                 return jwtHelper.decodeToken(token)

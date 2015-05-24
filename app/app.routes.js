@@ -5,32 +5,32 @@
         .module('portfolioApp')
         .config(function($stateProvider, $urlRouterProvider) {
             $urlRouterProvider.otherwise('/login');
-        	$stateProvider
-        	 	.state('login',{
-        	 		url:'/login',
-                    data: {
-                        require_login:false
-                    },
-        	 		templateUrl:'/components/login/login.html',
-        	 		controller:'LoginController as login'
-        	 	})
+            $stateProvider
+                .state('login',{
+                    url:'/login',
+                    templateUrl:'/components/login/login.html',
+                    controller:'LoginController as login'
+                })
                 .state('forgot',{
                     url:'/forgot',
-                    data: {
-                        require_login:false
-                    },
                     templateUrl:'/components/forgot/forgot.html',
                     controller:'ForgotController as forgot'
                 })
                 .state('frontdesk',{
                     url:'/frontdesk',
                     abstract: true,
-                    data: {
-                        require_login: true
-                    },
                     resolve: {
-                        token: function(AuthService) {
-                            return AuthService.tokenPromise();
+                        token : function(AuthService) {
+                            return AuthService.token;
+                        },
+                        ordersPrepService: function(roomOrderService) {
+                            return roomOrderService.getOrders();
+                        },
+                        guestListPrepService: function(listService) {
+                            return listService.getGuests()
+                        },
+                        settingsPrepService: function(settingsService) {
+                            return settingsService.getSettings();
                         }
                     },
                     templateUrl:'/components/frontdesk/main/main.html',
@@ -44,7 +44,8 @@
                 .state('frontdesk.roomservice',{
                     url:'/roomservice',
                     templateUrl:'/components/frontdesk/roomservice/roomservice.html',
-                    controller:'roomserviceController as roomservice'
+                    controller:'roomserviceController',
+                    controllerAs: 'roomservice'
                 });
         });
 })();

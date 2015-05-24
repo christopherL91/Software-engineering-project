@@ -4,48 +4,18 @@
         .module('portfolioApp.main',['ngDialog','ngAnimate','toastr'])
         .controller('mainController',mainController);
 
-    mainController.$inject = ['$state','$rootScope','ngDialog','toastr','AuthService','EVENTS','token','streamService'];
+    mainController.$inject = ['settingsPrepService','$state','ngDialog','AuthService','streamService','EVENTS'];
 
-    function mainController($state,$rootScope,ngDialog,toastr,AuthService,EVENTS,token,streamService) {
+    function mainController(settingsPrepService,$state,ngDialog,AuthService,streamService,EVENTS) {
         var vm = this;
         var settingDialogID;
 
-        streamService.socket.on(EVENTS.remove_guest,function(data) {
-            var guest = data.guest;
-            if(data.client_id !== token.client_id) {
-                //listService.removeGuests.removeCurrentGuest(guest);
-                var message = guest.familyname +' ' +guest.surname;
-                toastr.info(message, 'New guest just checked out...', {
-                    extendedTimeOut: 0,
-                    maxOpened: 5,
-                    tapToDismiss: true,
-                    timeOut: 0,
-                    positionClass: 'toast-top-left'
-                });
-            }
+        vm.settings = settingsPrepService;
+
+        streamService.socket.on(EVENTS.new_settings,function(settings) {
+            vm.settings = settings;
         });
 
-        streamService.socket.on(EVENTS.new_guest,function(data) {
-            var guest = data.guest;
-            if(data.client_id !== token.client_id) {
-                //listService.removeGuests.removeFutureGuest(guest);
-                var message = guest.familyname +' ' +guest.surname;
-                toastr.info(message, 'New guest just checked in...', {
-                    extendedTimeOut: 0,
-                    maxOpened: 5,
-                    tapToDismiss: true,
-                    timeOut: 0,
-                    positionClass: 'toast-top-left'
-                });
-            }
-        });
-
-        $rootScope.$on('new_settings', function (event,settings) {
-            vm.hotelname = settings.name;
-            vm.address = settings.address;
-        });
-
-        //öppna inställningar.
         vm.openSettings = function() {
             if(!settingDialogID) {
                 var dialog = ngDialog.open({
@@ -60,32 +30,12 @@
         };
 
         vm.openBugReport = function() {
-            var dialog = ngDialog.open({
+            ngDialog.open({
                 template: '/components/frontdesk/bugreport/bugreport.html',
                 controller: 'bugController as bug'
             });
         };
 
-        //Hämta senaste information om vilka inställningar som gjorts.
-        AuthService.info()
-            .then(function(response) {
-                var res = response.data.info;
-                vm.hotelname = res.name;
-                vm.address = res.address;
-            })
-            .catch(function(err) {
-                console.log(err);
-                toastr.warning('Server error', 'Kunde inte hämta information om hotellet', {
-                    extendedTimeOut: 0,
-                    maxOpened: 5,
-                    tapToDismiss: true,
-                    timeOut: 0,
-                    // Kolla detta...
-                    positionClass: 'toast-top-left'
-                });
-            });
-
-        //logga ut användaren från systemet.
         vm.logout = function() {
             AuthService.logout().then(function() {
                 $state.go('login');

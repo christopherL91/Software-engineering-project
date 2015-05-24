@@ -20,15 +20,16 @@
             'angular.filter'
         ])
         .constant('SERVER_INFO',{
-            //address: 'http://lillthors.ninja:5000',
-            address: 'http://localhost:5000',
-            //websocket: 'http://lillthors.ninja:5000'
-            websocket: 'http://localhost:5000'
+            address: 'http://lillthors.ninja:5000',
+            //address: 'http://192.168.0.189:5000',
+            websocket: 'http://lillthors.ninja:5000'
+            //websocket: 'http://192.168.0.189:5000'
         })
         .constant('EVENTS',{
             new_guest: 'NEW_GUEST',
             remove_guest: 'REMOVE_GUEST',
-            remove_order: 'REMOVE_ORDER'
+            remove_order: 'REMOVE_ORDER',
+            new_settings: 'NEW_SETTINGS'
         })
         .config(AppConfig)
         .controller('AppController', AppController);

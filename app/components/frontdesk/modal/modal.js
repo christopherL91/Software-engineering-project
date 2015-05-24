@@ -13,21 +13,13 @@
 
         vm.checkout = function() {
             var guest = $scope.ngDialogData;
-            streamService.socket.emit(EVENTS.remove_guest,{
-                guest: guest,
-                client_id: token.client_id
-            });
-            listService.removeGuests.removeCurrentGuest(guest);
+            listService.removeGuests.updateCurrentGuests(guest);
             $scope.closeThisDialog();
         };
 
         vm.checkin = function() {
             var guest = $scope.ngDialogData;
-            streamService.socket.emit(EVENTS.new_guest,{
-                guest: guest,
-                client_id: token.client_id
-            });
-            listService.removeGuests.removeFutureGuest(guest);
+            listService.removeGuests.updateFutureGuests(guest);
             $scope.closeThisDialog();
         };
 

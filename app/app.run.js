@@ -7,7 +7,7 @@
 
 	runBlock.$inject = ['$rootScope','jwtHelper','$location','$state','$localStorage'];
 	function runBlock($rootScope,jwtHelper,$location,$state,$localStorage) {
-		$rootScope.$on('$stateChangeStart',function(event, toState, toParams, fromState, fromParams) {
+		$rootScope.$on('$stateChangeStart',function(event, toState) {
             var token = $localStorage.token;
             if(token && !(window.isEmpty(token) && jwtHelper.isTokenExpired(token))) {
                 if(toState.url === '/login' || toState.url === '/forgot') {

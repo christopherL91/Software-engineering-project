@@ -5,9 +5,9 @@
 		.module('portfolioApp.settings',['ngAnimate','toastr'])
 		.controller('settingsController',settingsController);
 
-		settingsController.$inject = ['$scope','$rootScope','settingsService','toastr'];
+		settingsController.$inject = ['$scope','settingsService','toastr'];
 
-		function settingsController($scope,$rootScope,settingsService,toastr) {
+		function settingsController($scope,settingsService,toastr) {
 			var vm = this;
 			
 			vm.update = function(settings) {
@@ -20,7 +20,6 @@
                             extendedTimeOut: 0,
                             maxOpened: 5,
                             timeOut: 5000,
-                            // Kolla detta...
                             positionClass: 'toast-bottom-right'
                         });
                     });

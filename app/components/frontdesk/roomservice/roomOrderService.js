@@ -5,45 +5,13 @@
         .module('portfolioApp.roomservice')
         .factory('roomOrderService',roomOrderService);
 
-    roomOrderService.$inject = ['$http','SERVER_INFO','toastr','AuthService','streamService','EVENTS'];
+    roomOrderService.$inject = ['$http','SERVER_INFO','toastr','streamService','EVENTS','$q'];
 
-    function roomOrderService($http,SERVER_INFO,toastr,AuthService,streamService,EVENTS) {
-        var orderslist = [];
-        var token = AuthService.token();
-
-        $http({
-            method: 'GET',
-            url : SERVER_INFO.address + '/api/roomservice',
-            data: '',
-            headers: {
-                'Content-Type': 'application/json; charset=utf-8'
-            }
-        })
-            .then(function(response) {
-                var orders = response.data.orders;
-                if (angular.isArray(orders)){
-                    orders.forEach(function (order){
-                        orderslist.push(order);
-                    });
-                } else {
-                    // only one element
-                    orderslist.push(orders);
-                }
-            })
-            .catch(function(err) {
-                console.log(err);
-                toastr.warning('Roomservice orders not found', 'Could not find roomservice orders due to an error', {
-                    extendedTimeOut: 0,
-                    maxOpened: 5,
-                    tapToDismiss: true,
-                    timeOut: 0,
-                    // Kolla detta...
-                    positionClass: 'toast-bottom-right'
-                });
-            });
+    function roomOrderService($http,SERVER_INFO,toastr,streamService,EVENTS,$q) {
+        var orders = [];
 
         var service = {
-            orders:orderslist,
+            getOrders : getOrders,
             done: done,
             remove: remove
         };
@@ -51,21 +19,64 @@
         return service;
         //////////////////////////
 
+        function getOrders() {
+            var deferred = $q.defer();
+
+            if(orders.length > 0) {
+                // Old orders are already there.
+                deferred.resolve(orders);
+            }else {
+                $http({
+                    method: 'GET',
+                    url: SERVER_INFO.address + '/api/roomservice',
+                    data: '',
+                    headers: {
+                        'Content-Type': 'application/json; charset=utf-8'
+                    }
+                })
+                    .then(function (response) {
+                        var new_orders = response.data.orders;
+                        if (!angular.isArray(new_orders)) {
+                            // only one element
+                            orders.push(new_orders);
+                        } else {
+                            new_orders.forEach(function (order) {
+                                orders.push(order);
+                            });
+                        }
+                        deferred.resolve({
+                            orders:orders
+                        });
+                    })
+                    .catch(function (err) {
+                        console.log(err);
+                        toastr.warning('Roomservice orders not found', 'Could not find roomservice orders due to an error', {
+                            extendedTimeOut: 0,
+                            maxOpened: 5,
+                            tapToDismiss: true,
+                            timeOut: 0,
+                            positionClass: 'toast-bottom-right'
+                        });
+                        deferred.reject(err);
+                    });
+            }
+            return deferred.promise;
+        }
+
         function remove(order) {
             var id = order._id;
-            for(var i = 0; i < orderslist.length; i++) {
-                if(orderslist[i]._id === id) {
-                    orderslist.splice(i,1);
+            for(var i = 0; i < orders.length; i++) {
+                if(orders[i]._id === id) {
+                    orders.splice(i,1);
                 }
             }
         }
 
         function done(order) {
             var id = order._id;
-            for(var i = 0; i < orderslist.length; i++) {
-                if(orderslist[i]._id === id) {
-                    console.log(orderslist[i]);
-                    orderslist.splice(i,1);
+            for(var i = 0; i < orders.length; i++) {
+                if(orders[i]._id === id) {
+                    orders.splice(i,1);
                 }
             }
             $http({
@@ -79,7 +90,6 @@
                 .then(function(data) {
                     console.log(data);
                     streamService.socket.emit(EVENTS.remove_order,{
-                        client_id: token.client_id,
                         order: order
                     });
                 })
