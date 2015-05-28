@@ -7,15 +7,21 @@
 
         settingsService.$inject = ['$http','$q','streamService','SERVER_INFO','EVENTS'];
         function settingsService($http,$q,streamService,SERVER_INFO,EVENTS) {
+            var settings = {};
 
             var service = {
                 update: update,
-                getSettings: getSettings
+                getSettings: getSettings,
+                getCachedSettings: getCachedSettings
             };
 
             return service;
 
             //////////////////////////// Functions goes here.
+
+            function getCachedSettings() {
+                return settings;
+            }
 
             function getSettings() {
                 var deferred = $q.defer();
@@ -27,7 +33,11 @@
                     }
                 })
                     .then(function(response) {
+                        settings = response.data.info;
                         deferred.resolve(response.data.info);
+                    })
+                    .catch(function(err) {
+                       deferred.reject(err);
                     });
                 return deferred.promise;
             }

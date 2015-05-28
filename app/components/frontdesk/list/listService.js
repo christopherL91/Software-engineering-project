@@ -56,11 +56,25 @@
                         var future = result[1].data.guests;
 
                         current.forEach(function(guest) {
-                           currentGuests.push(guest);
+                            if(guest.familyname && guest.surname && guest.room) {
+                                currentGuests.push(guest);
+                            }else {
+                                guest.familyname = "UNKNOWN";
+                                guest.surname = "UNKNOWN";
+                                guest.room = "UNKNOWN";
+                                currentGuests.push(guest);
+                            }
                         });
 
                         future.forEach(function(guest) {
-                           arrivingGuests.push(guest);
+                            if(guest.familyname && guest.surname && guest.room) {
+                                arrivingGuests.push(guest);
+                            }else {
+                                guest.familyname = "UNKNOWN";
+                                guest.surname = "UNKNOWN";
+                                guest.room = "UNKNOWN";
+                                arrivingGuests.push(guest);
+                            }
                         });
 
                         deferred.resolve({

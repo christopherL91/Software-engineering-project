@@ -7,9 +7,9 @@
 		])
 		.factory('streamService',streamService);
 
-	streamService.$inject = ['socketFactory','$rootScope','$interval','SERVER_INFO','EVENTS'];
+	streamService.$inject = ['socketFactory','SERVER_INFO'];
 
-	function streamService(socketFactory,$rootScope,$interval,SERVER_INFO,EVENTS) {
+	function streamService(socketFactory,SERVER_INFO) {
 		var socket = socketFactory({
 			ioSocket: io.connect(SERVER_INFO.websocket),
 			prefix: ''

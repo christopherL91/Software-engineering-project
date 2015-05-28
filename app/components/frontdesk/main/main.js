@@ -37,6 +37,7 @@
         };
 
         vm.logout = function() {
+            streamService.socket.disconnect();
             AuthService.logout().then(function() {
                 $state.go('login');
             });

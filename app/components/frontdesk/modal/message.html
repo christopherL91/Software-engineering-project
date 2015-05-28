@@ -1,7 +1,18 @@
-<div>
-	<h3>Message to: {{ngDialogData.surname}} {{ngDialogData.familyname}}</h3><br>
-	<form name="msg" novalidate>
-		<textarea name="msg" ng-model="modal.message" cols="40" rows="10" required></textarea>
-		<button ng-click="modal.sendMessage()" ng-disabled="msg.$invalid" type="submit" class="btn btn-green">Send message</button>
+<div class="container">
+	<form name="msg" role="form" class="forms" novalidate>
+		<fieldset>
+            <legend>Message to guest</legend>
+            <label>
+                To: {{ngDialogData.surname}} {{ngDialogData.familyname}}<br>
+                <textarea name="msg" ng-model="modal.message" cols="40" rows="10" required></textarea>
+            </label>
+        </fieldset>
+        <p>
+            <button ng-click="modal.sendMessage()"
+                    ng-disabled="msg.$invalid"
+                    type="submit" class="btn btn-green">
+                    Send message
+            </button>
+        </p>
 	</form>
 </div>

@@ -9,6 +9,8 @@
 
 		function settingsController($scope,settingsService,toastr) {
 			var vm = this;
+
+            vm.settings = settingsService.getCachedSettings();
 			
 			vm.update = function(settings) {
                 settingsService.update(settings)

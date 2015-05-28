@@ -1,18 +1,20 @@
 <div class="container">
-	<form role="form" class="forms" novalidate>
+	<form name="settingsForm" role="form" class="forms" novalidate>
 		<fieldset>
 			<legend>Settings</legend>
 			<label>
 				Hotel name<br>
-				<input ng-model="settings.name" class="width-50"/>
+				<input name="settingsName" ng-model="settings.settings.name" class="width-50"/>
 			</label>
 			<label>
 				Hotel address<br>
-				<input ng-model="settings.address" class="width-50"/>
+				<input name="settingsAddress" ng-model="settings.settings.address" class="width-50"/>
 			</label>
 		</fieldset>
 		<p>
-			<button ng-click="settings.update(settings)" type="submit" class="btn btn-green">OK</button>
+			<button ng-disabled="!settingsForm.settingsName.$dirty && !settingsForm.settingsAddress.$dirty"
+                    ng-click="settings.update(settings.settings)"
+                    type="submit" class="btn btn-green">OK</button>
 			<button ng-click="settings.close()" class="btn btn-red">Close</button>
 		</p>
 	</form>

@@ -33,18 +33,20 @@
                             return settingsService.getSettings();
                         }
                     },
-                    templateUrl:'/components/frontdesk/main/main.html',
-                    controller:'mainController as frontdesk'
+                    templateUrl: '/components/frontdesk/main/main.html',
+                    controller: 'mainController',
+                    controllerAs: 'frontdesk'
                 })
                 .state('frontdesk.guests',{
                     url:'',
-                    templateUrl:'/components/frontdesk/list/list.html',
-                    controller:'GuestListController as list'
+                    templateUrl: '/components/frontdesk/list/list.html',
+                    controller: 'GuestListController',
+                    controllerAs: 'list'
                 })
                 .state('frontdesk.roomservice',{
-                    url:'/roomservice',
-                    templateUrl:'/components/frontdesk/roomservice/roomservice.html',
-                    controller:'roomserviceController',
+                    url: '/roomservice',
+                    templateUrl: '/components/frontdesk/roomservice/roomservice.html',
+                    controller: 'roomserviceController',
                     controllerAs: 'roomservice'
                 });
         });
