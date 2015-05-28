@@ -5,11 +5,10 @@
         .module('portfolioApp.modal',[])
         .controller('ModalController',ModalController);
 
-    ModalController.$inject = ['$scope','streamService','listService','ngDialog','EVENTS','AuthService'];
+    ModalController.$inject = ['$scope','listService','ngDialog'];
 
-    function ModalController($scope,streamService,listService,ngDialog,EVENTS,AuthService) {
+    function ModalController($scope,listService,ngDialog) {
         var vm = this;
-        var token = AuthService.token();
 
         vm.checkout = function() {
             var guest = $scope.ngDialogData;

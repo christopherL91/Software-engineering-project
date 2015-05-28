@@ -56,25 +56,11 @@
                         var future = result[1].data.guests;
 
                         current.forEach(function(guest) {
-                            if(guest.familyname && guest.surname && guest.room) {
                                 currentGuests.push(guest);
-                            }else {
-                                guest.familyname = "UNKNOWN";
-                                guest.surname = "UNKNOWN";
-                                guest.room = "UNKNOWN";
-                                currentGuests.push(guest);
-                            }
                         });
 
                         future.forEach(function(guest) {
-                            if(guest.familyname && guest.surname && guest.room) {
                                 arrivingGuests.push(guest);
-                            }else {
-                                guest.familyname = "UNKNOWN";
-                                guest.surname = "UNKNOWN";
-                                guest.room = "UNKNOWN";
-                                arrivingGuests.push(guest);
-                            }
                         });
 
                         deferred.resolve({
@@ -145,8 +131,7 @@
                     'Content-Type': 'application/json; charset=utf-8'
                 }
             })
-                .then(function(response) {
-                    console.log(response);
+                .then(function() {
                     removeFutureGuest(guest);
                     return $http({
                         method: 'POST',
@@ -161,7 +146,6 @@
                     streamService.socket.emit(EVENTS.new_guest,{
                         guest: guest
                     });
-                    addCurrentGuest(guest);
                 })
                 .catch(function(err) {
                     console.log(err);

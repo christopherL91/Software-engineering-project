@@ -13,31 +13,29 @@
 
         streamService.socket.on(EVENTS.remove_guest,function(data) {
             var guest = data.guest;
-            if(listService.removeGuests.removeCurrentGuest(guest)) {
-                var message = guest.familyname + ' ' + guest.surname;
-                toastr.info(message, 'New guest just checked out...', {
-                    extendedTimeOut: 0,
-                    maxOpened: 5,
-                    tapToDismiss: true,
-                    timeOut: 0,
-                    positionClass: 'toast-top-left'
-                });
-            }
+            listService.removeGuests.removeCurrentGuest(guest)
+            var message = guest.familyname + ' ' + guest.surname;
+            toastr.info(message, 'New guest just checked out...', {
+                extendedTimeOut: 0,
+                maxOpened: 5,
+                tapToDismiss: true,
+                timeOut: 0,
+                positionClass: 'toast-top-left'
+            });
         });
 
         streamService.socket.on(EVENTS.new_guest,function(data) {
             var guest = data.guest;
-            if(listService.removeGuests.removeFutureGuest(guest)) {
-                listService.removeGuests.addCurrentGuest(guest);
-                var message = guest.familyname + ' ' + guest.surname;
-                toastr.info(message, 'New guest just checked in...', {
-                    extendedTimeOut: 0,
-                    maxOpened: 5,
-                    tapToDismiss: true,
-                    timeOut: 0,
-                    positionClass: 'toast-top-left'
-                });
-            }
+            listService.removeGuests.removeFutureGuest(guest)
+            listService.removeGuests.addCurrentGuest(guest);
+            var message = guest.familyname + ' ' + guest.surname;
+            toastr.info(message, 'New guest just checked in...', {
+                extendedTimeOut: 0,
+                maxOpened: 5,
+                tapToDismiss: true,
+                timeOut: 0,
+                positionClass: 'toast-top-left'
+            });
         });
 
         vm.openCurrentModal = function(guest) {
